@@ -7,18 +7,22 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class newMessage extends Notification
+use Illuminate\Notifications\Messages\SlackMessage;
+
+class FirstNotification extends Notification
 {
     use Queueable;
+
+    protected $data;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -29,8 +33,7 @@ class newMessage extends Notification
      */
     public function via($notifiable)
     {
-        // return ['mail'];
-        return ['slack'];
+        return ['mail','slack'];
     }
 
     /**
@@ -39,13 +42,13 @@ class newMessage extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    // public function toMail($notifiable)
-    // {
-    //     return (new MailMessage)
-    //                 ->line('The introduction to the notification.')
-    //                 ->action('Notification Action', url('/'))
-    //                 ->line('Thank you for using our application!');
-    // }
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
+    }
 
     /**
      * Get the array representation of the notification.
@@ -60,12 +63,14 @@ class newMessage extends Notification
         ];
     }
 
-    public function toSlack($notifiable)
+    public function toSlack()
     {
+        $message = $this->data['content'];
+        
         return (new SlackMessage)
-                    ->from('All Laravel')
-                    ->to('#chatbot')
-                    ->image('https://allaravel.com/themes/allaravel/assets/img/all-laravel-logo.png')
-                    ->content('Tin nhắn đến từ ứng dụng All Laravel');
+                ->from('Admin', ':ghost:')
+                ->to('#team-bac')
+                ->content($message);
+ 
     }
 }

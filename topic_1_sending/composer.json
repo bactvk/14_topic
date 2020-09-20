@@ -13,7 +13,8 @@
         "guzzlehttp/guzzle": "^7.0",
         "laravel/framework": "5.8.*",
         "laravel/slack-notification-channel": "^2.2",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "nexmo/laravel": "^2.3"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
