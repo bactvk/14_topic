@@ -14,38 +14,37 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/animate/animate.css')}}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/css-hamburgers/hamburgers.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/select2/select2.min.css')}}">
-<!--===============================================================================================-->
+
+
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/util.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/main_2.css')}}">
-<!--===============================================================================================-->
+<!--====================================================================================-->
 </head>
 <body>
 
 	<div class="bg-contact3" style="background-image: url('/assets/images/bg-01.jpg');">
 		<div class="container-contact3">
 			<div class="wrap-contact3">
-				<form class="contact3-form" method="POST">
+				<form class="contact3-form" method="POST" novalidate>
 					@csrf
 					<span class="contact3-form-title">
 						Adding caption
 					</span>
 
 					
-					<div class="wrap-input3 validate-input">
-						<input class="input3" type="text" name="object" placeholder="object" required="">
+					<div class="wrap-input3 validate-input object">
+						<input class="input3 " type="email" name="object" placeholder="Enter email" required="">
 						<span class="focus-input3"></span>
 					</div>
 
-					<div class="wrap-input3 validate-input" >
-						<input class="input3" type="text" name="subject" placeholder="subject" required="">
+					<div class="wrap-input3 validate-input subject" >
+						<input class="input3 " type="text" name="subject" placeholder="Enter subject" required="">
 						<span class="focus-input3"></span>
 					</div>
 
 					<div class="wrap-input3 validate-input">
 						{{-- <textarea id="editor1" class="input3" name="content" placeholder="Flirt caption" required=""></textarea> --}}
-						<textarea  class="input3" name="content" placeholder="content" required=""></textarea>
+						<textarea  class="input3" name="content" placeholder="Enter content" required=""></textarea>
 						<span class="focus-input3"></span>
 					</div>
 					{{-- radio --}}
@@ -73,9 +72,9 @@
 
 					</div>
 
-					<div class="container-contact3-form-btn float-right">
-						<button class="contact3-form-btn" type="submit">
-							Save
+					<div class="float-right">
+						<button class="btn btn-primary" type="submit">
+							Send
 						</button>
 					</div>
 					
@@ -90,17 +89,30 @@
 
 <!--===============================================================================================-->
 	<script src="{{asset('assets/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
-	<script src="{{asset('assets/vendor/bootstrap/js/popper.js')}}"></script>
 	<script src="{{asset('assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-	{{-- <script type="text/javascript" src="{{asset('assets/ckeditor/ckeditor.js')}}"></script> --}}
+	<script type="text/javascript" src="{{asset('assets/ckeditor/ckeditor.js')}}"></script>
 	<script src="https://cdn.ckeditor.com/4.15.0/standard-all/ckeditor.js"></script>
 	<script>
-	    CKEDITOR.replace('editor1', {
-	       extraPlugins: 'editorplaceholder',
-	      editorplaceholder: 'Enter flirt caption'
-	    });
+
+
+
+	    // CKEDITOR.replace('editor1', {
+	    //    extraPlugins: 'editorplaceholder',
+	    //   editorplaceholder: 'Enter flirt caption'
+	    // });
 
 	    $('.alert').fadeOut(5000);
+
+	    $('input[name=choice_send]').click(function(){
+	    	var val = $(this).val();
+	    	if(val == "email"){
+	    		$('.subject').css('display','block');
+	    		$('.object').css('display','block');
+	    	}else if(val == "slack" || val == "sms"){
+	    		$('.subject').css('display','none');
+	    		$('.object').css('display','none');
+	    	}
+	    })
 	  </script>
 
 </body>

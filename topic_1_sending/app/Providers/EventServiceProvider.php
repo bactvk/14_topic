@@ -20,7 +20,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\HasExceptionEvent' => [
             'App\Listeners\HasExceptionListener'
-        ]
+        ],
+        'App\Events\SendMailEvent' => [
+            'App\Listeners\SendMailListener'
+        ] 
     ];
 
     /**

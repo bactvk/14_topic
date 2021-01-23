@@ -4,7 +4,7 @@
 
 	class Helper{
 
-		const WebHooksURL = "https://hooks.slack.com/services/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";
+		const WebHooksURL = "https://hooks.slack.com/services/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";
 		
 		static public function setUpConfigAccountInfo()
 		{

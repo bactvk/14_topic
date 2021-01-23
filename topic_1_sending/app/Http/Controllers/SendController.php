@@ -15,9 +15,9 @@ class SendController extends Controller
 {
     public function send(Request $request)
     {
-        
+        //dd(config('mail')); // SAVE LAI
 
-    	if($request->isMethod('post'))
+    	if($request->isMethod('post')) // 
     	{
     		$inputs = [
     			'choice_send' => $request->choice_send,
@@ -46,9 +46,7 @@ class SendController extends Controller
     public function sendByEmail($inputs)
     {
     	// Helper::setUpConfigAccountInfo();
-    	
     	Mail::send('frontend.mail.mail_template', ['data' => $inputs ] , function($message) use ($inputs){
-    		
     		$message -> to($inputs['object'])
     				 -> from("noreply@gmail.com","admin System")
     				 -> subject($inputs['subject']);
@@ -56,11 +54,12 @@ class SendController extends Controller
     	
     }
 
-    public function sendToSlack($data)
+    public function sendToSlack($data) // content 
     {
         $notify = new FirstNotification($data);
       
-        $slackWebHookUrl = Helper::WebHooksURL; 
+        $slackWebHookUrl = Helper::WebHooksURL; // https://app.slack.com/client/T01AH59TLEB/C01B14882LS
+        // bac-d3l3031.slack.com
         Notification::route('slack', $slackWebHookUrl)->notify($notify);
     }
 

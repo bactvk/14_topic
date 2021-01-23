@@ -12,6 +12,7 @@
 */
 use App\Notifications\newMessage;
 
+
 Route::match(['get','post'],'/','SendController@send')->name('send');
 
 
@@ -20,3 +21,5 @@ Route::get('/send', function() {
       ->notify(new newMessage());
     
 });
+
+Route::match(['get','post'],'/sign-up','UserController@signUp')->name('signUp');
