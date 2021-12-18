@@ -1,0 +1,1 @@
+<p style="color: red">Test message Mail Trap</p>

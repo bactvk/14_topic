@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Mail;
 use App\Events\SendMailEvent;
+use App\Jobs\SendEmail;
+use App\Mail\TestMail;
 
 class Usercontroller extends Controller
 {
@@ -25,7 +27,7 @@ class Usercontroller extends Controller
     		// event(new SendMailEvent($inputs));
 
     			// observe
-    			// auto
+    			// auto run when create User
 
     		return redirect()->route('signUp')->with('success','Create success');
     	}

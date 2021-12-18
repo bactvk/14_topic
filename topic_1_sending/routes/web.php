@@ -23,3 +23,8 @@ Route::get('/send', function() {
 });
 
 Route::match(['get','post'],'/sign-up','UserController@signUp')->name('signUp');
+
+// Push notify
+Route::match(['get','post'],'/push','PushController@index')->name('index');
+
+Route::get('/push/receive','PushController@receive')->name('receive');
